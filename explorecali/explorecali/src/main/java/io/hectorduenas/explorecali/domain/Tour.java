@@ -18,7 +18,7 @@ public class Tour {
 	private String title;
 	
 	@Column(length = 2000)
-	private String desccription;
+	private String description;
 	
 	@Column(length = 2000)
 	private String blurb;
@@ -43,10 +43,10 @@ public class Tour {
 	@Enumerated
 	private Region region;
 
-	public Tour(String title, String desccription, String blurb, Integer price, String duration,
+	public Tour(String title, String description, String blurb, Integer price, String duration,
 			String bullets, TourPackage tourPackage, Difficulty difficulty, Region region) {
 		this.title = title;
-		this.desccription = desccription;
+		this.description = description;
 		this.blurb = blurb;
 		this.price = price;
 		this.duration = duration;
@@ -69,11 +69,11 @@ public class Tour {
 	}
 
 	public String getDesccription() {
-		return desccription;
+		return description;
 	}
 
 	public void setDesccription(String desccription) {
-		this.desccription = desccription;
+		this.description = desccription;
 	}
 
 	public String getBlurb() {
@@ -138,7 +138,7 @@ public class Tour {
 
 	@Override
 	public String toString() {
-		return "Tour [id=" + id + ", title=" + title + ", desccription=" + desccription + ", blurb=" + blurb
+		return "Tour [id=" + id + ", title=" + title + ", desccription=" + description + ", blurb=" + blurb
 				+ ", price=" + price + ", duration=" + duration + ", bullets=" + bullets + ", tourPackage="
 				+ tourPackage + ", difficulty=" + difficulty + ", region=" + region + "]";
 	}
@@ -149,7 +149,7 @@ public class Tour {
 		int result = 1;
 		result = prime * result + ((blurb == null) ? 0 : blurb.hashCode());
 		result = prime * result + ((bullets == null) ? 0 : bullets.hashCode());
-		result = prime * result + ((desccription == null) ? 0 : desccription.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -179,10 +179,10 @@ public class Tour {
 				return false;
 		} else if (!bullets.equals(other.bullets))
 			return false;
-		if (desccription == null) {
-			if (other.desccription != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!desccription.equals(other.desccription))
+		} else if (!description.equals(other.description))
 			return false;
 		if (difficulty != other.difficulty)
 			return false;
