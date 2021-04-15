@@ -6,7 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.swing.plaf.synth.Region;
+import io.hectorduenas.explorecali.domain.Region;
 
 @Entity
 public class Tour {
@@ -32,6 +32,9 @@ public class Tour {
 	@Column(length = 2000)
 	private String bullets;
 	
+	@Column
+    private String keywords;
+	
 	@ManyToOne
 	private TourPackage tourPackage;
 	
@@ -42,15 +45,16 @@ public class Tour {
 	@Column
 	@Enumerated
 	private Region region;
-
+	
 	public Tour(String title, String description, String blurb, Integer price, String duration,
-			String bullets, TourPackage tourPackage, Difficulty difficulty, Region region) {
+			String bullets, String keywords, TourPackage tourPackage, Difficulty difficulty, Region region) {
 		this.title = title;
 		this.description = description;
 		this.blurb = blurb;
 		this.price = price;
 		this.duration = duration;
 		this.bullets = bullets;
+		this.keywords = keywords;
 		this.tourPackage = tourPackage;
 		this.difficulty = difficulty;
 		this.region = region;
@@ -111,7 +115,15 @@ public class Tour {
 	public TourPackage getTourPackage() {
 		return tourPackage;
 	}
+	
+	public String getKeywords() {
+		return keywords;
+	}
 
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	
 	public void setTourPackage(TourPackage tourPackage) {
 		this.tourPackage = tourPackage;
 	}
@@ -139,7 +151,7 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "Tour [id=" + id + ", title=" + title + ", desccription=" + description + ", blurb=" + blurb
-				+ ", price=" + price + ", duration=" + duration + ", bullets=" + bullets + ", tourPackage="
+				+ ", price=" + price + ", duration=" + duration + ", bullets=" + bullets + ", keywords=" + keywords + ", tourPackage="
 				+ tourPackage + ", difficulty=" + difficulty + ", region=" + region + "]";
 	}
 
@@ -153,6 +165,7 @@ public class Tour {
 		result = prime * result + ((difficulty == null) ? 0 : difficulty.hashCode());
 		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((keywords == null) ? 0 : keywords.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());

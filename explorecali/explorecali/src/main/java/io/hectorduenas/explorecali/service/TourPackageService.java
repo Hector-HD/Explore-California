@@ -1,10 +1,12 @@
 package io.hectorduenas.explorecali.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import io.hectorduenas.explorecali.domain.TourPackage;
 import io.hectorduenas.explorecali.repo.TourPackageRepository;
 
+@Service
 public class TourPackageService {
 	
 	private TourPackageRepository tourPackageRepository;
