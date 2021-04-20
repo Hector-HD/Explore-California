@@ -73,6 +73,25 @@ public class TourRatingController {
 		return new RatingDto(tourRatingRepository.save(rating));
 	}
 	
+	@PatchMapping
+	public RatingDto updateWithPatch(@PathVariable(value = "tourId") int tourId, 
+			@RequestBody @Validated RatingDto ratingDto) {
+		TourRating rating = verifyTourRating(tourId, ratingDto.getCustomerId());
+		if(ratingDto.getScore() != null) {
+			rating.setScore(ratingDto.getScore());
+		}
+		if(ratingDto.getComment() != null) {
+			rating.setComment(ratingDto.getComment());
+		}
+		return new RatingDto(tourRatingRepository.save(rating));
+	}
+	
+	@DeleteMapping(path = "/{customerId}")
+	public void delete(@PathVariable(value = "tourId") int tourId,
+			@PathVariable(value = "customerId") int customerId) {
+		TourRating rating = verifyTourRating(tourId, customerId);
+		tourRatingRepository.delete(rating);
+	}
 	
 	private TourRating verifyTourRating(int tourId, int customerId) throws NoSuchElementException {
 		return tourRatingRepository.findByPkTourIdAndPkCustomerId(tourId, customerId).orElseThrow(() ->
