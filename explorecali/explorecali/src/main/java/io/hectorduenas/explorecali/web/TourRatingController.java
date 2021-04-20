@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.hectorduenas.explorecali.domain.Tour;
 import io.hectorduenas.explorecali.domain.TourRating;
-import io.hectorduenas.explorecali.domain.TourRatingPK;
 import io.hectorduenas.explorecali.repo.TourRatingRepository;
 import io.hectorduenas.explorecali.repo.TourRepository;
 

@@ -28,12 +28,11 @@ public class Tour {
 		
 	}
 
-	public Tour(String id, String title, String tourPackageCode, String tourPackageName, Map<String, String> details) {
+	public Tour(String title,TourPackage tourPackage, Map<String, String> details) {
 		super();
-		this.id = id;
 		this.title = title;
-		this.tourPackageCode = tourPackageCode;
-		this.tourPackageName = tourPackageName;
+		this.tourPackageCode = tourPackage.getCode();
+		this.tourPackageName = tourPackage.getName();
 		this.details = details;
 	}
 

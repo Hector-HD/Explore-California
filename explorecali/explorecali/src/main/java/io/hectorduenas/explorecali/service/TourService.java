@@ -1,12 +1,12 @@
 package io.hectorduenas.explorecali.service;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.hectorduenas.explorecali.domain.Difficulty;
 import io.hectorduenas.explorecali.domain.Tour;
-import io.hectorduenas.explorecali.domain.Region;
 import io.hectorduenas.explorecali.domain.TourPackage;
 import io.hectorduenas.explorecali.repo.TourPackageRepository;
 import io.hectorduenas.explorecali.repo.TourRepository;
@@ -22,14 +22,11 @@ public class TourService {
 		this.tourPackageRepository = tourPackageRepository;
 	}
     
-	 public Tour createTour(String title, String description, String blurb, Integer price,
-             String duration, String bullets,
-             String keywords, String tourPackageName, Difficulty difficulty, Region region ) {
+	 public Tour createTour(String title, String tourPackageName, Map<String,String> details ) {
 	TourPackage tourPackage = tourPackageRepository.findByName(tourPackageName).orElseThrow(()->
 	new RuntimeException("Tour package does not exist: " + tourPackageName));
 	
-	return tourRepository.save(new Tour(title, description,blurb, price, duration,
-	  bullets, keywords, tourPackage, difficulty, region));
+	return tourRepository.save(new Tour(title, tourPackage, details));
 	}
 	
 	public long total() { return tourRepository.count(); }
