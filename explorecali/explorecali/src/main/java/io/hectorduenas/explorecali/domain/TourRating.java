@@ -66,6 +66,15 @@ public class TourRating {
 	}
 	
 
+	public TourRating( String tourId, @NotNull Integer customerId, @Min(0) @Max(5) Integer score,
+			@Size(max = 255) String comment) {
+		super();
+		this.tourId = tourId;
+		this.customerId = customerId;
+		this.score = score;
+		this.comment = comment;
+	}
+
 	@Override
 	public String toString() {
 		return "TourRating [id=" + id + ", tourId=" + tourId + ", customerId=" + customerId + ", score=" + score
