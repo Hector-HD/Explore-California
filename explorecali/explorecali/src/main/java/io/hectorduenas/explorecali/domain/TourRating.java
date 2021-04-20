@@ -1,26 +1,52 @@
 package io.hectorduenas.explorecali.domain;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class TourRating {
-	@EmbeddedId
-	private TourRatingPK pk;
+	@Id
+	private String id;
 	
-	@Column(nullable = false)
+	private String tourId;
+	
+	@NotNull
+	private Integer customerId;
+	
+	@Min(0)
+	@Max(5)
 	private Integer score;
 	
-	@Column
+	@Size(max = 255)
 	private String comment;
 
-	public TourRatingPK getPk() {
-		return pk;
+	public String getId() {
+		return id;
 	}
 
-	public void setPk(TourRatingPK pk) {
-		this.pk = pk;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTourId() {
+		return tourId;
+	}
+
+	public void setTourId(String tourId) {
+		this.tourId = tourId;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public Integer getScore() {
@@ -38,19 +64,12 @@ public class TourRating {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	public TourRating(TourRatingPK pk, Integer score, String comment) {
-		super();
-		this.pk = pk;
-		this.score = score;
-		this.comment = comment;
-	}
 	
-	protected TourRating() {}
 
 	@Override
 	public String toString() {
-		return "TourRating [pk=" + pk + ", score=" + score + ", comment=" + comment + "]";
+		return "TourRating [id=" + id + ", tourId=" + tourId + ", customerId=" + customerId + ", score=" + score
+				+ ", comment=" + comment + "]";
 	}
 
 	@Override
@@ -58,8 +77,10 @@ public class TourRating {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
+		result = prime * result + ((tourId == null) ? 0 : tourId.hashCode());
 		return result;
 	}
 
@@ -77,18 +98,28 @@ public class TourRating {
 				return false;
 		} else if (!comment.equals(other.comment))
 			return false;
-		if (pk == null) {
-			if (other.pk != null)
+		if (customerId == null) {
+			if (other.customerId != null)
 				return false;
-		} else if (!pk.equals(other.pk))
+		} else if (!customerId.equals(other.customerId))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (score == null) {
 			if (other.score != null)
 				return false;
 		} else if (!score.equals(other.score))
 			return false;
+		if (tourId == null) {
+			if (other.tourId != null)
+				return false;
+		} else if (!tourId.equals(other.tourId))
+			return false;
 		return true;
 	}
-	
+
 	
 }
